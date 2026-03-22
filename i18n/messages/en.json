@@ -1,0 +1,207 @@
+{
+  "nav": {
+    "school": "School",
+    "activities": "Activities",
+    "groups": "Groups",
+    "contact": "Contact",
+    "book": "Book now",
+    "lang": "EN",
+    "courses": {
+      "windsurf": "Windsurfing",
+      "kitesurf": "Kitesurfing",
+      "catamaran": "Catamaran Sailing",
+      "patinCatalan": "Patí Català",
+      "paddleSurf": "Stand Up Paddleboarding",
+      "esquiNautico": "Water Skiing",
+      "wakeBoard": "Wakeboarding",
+      "surf": "Surfing",
+      "wingFoil": "Wing Foil"
+    },
+    "activitiesList": {
+      "kayak": "Kayaking",
+      "bananaBoot": "Banana Boat",
+      "donut": "Donut Ride",
+      "boatTrips": "Boat Trips"
+    }
+  },
+  "hero": {
+    "badge": "Long Beach (Platja Llarga), Tarragona - Costa Dorada",
+    "headline": "Learn to sail.\nLive the Mediterranean.",
+    "subheadline": "Watersports school in Tarragona. Windsurfing, Kitesurfing, Catamaran and water activities for all levels. Certified FVE/RFEV instructors.",
+    "ctaPrimary": "View courses",
+    "ctaSecondary": "View activities",
+    "badge2": "+20 years of experience"
+  },
+  "stats": {
+    "years": "Years of experience",
+    "students": "Students trained",
+    "disciplines": "Water sports",
+    "months": "Months open per year"
+  },
+  "school": {
+    "badge": "OUR SCHOOL",
+    "title": "Learn from the best",
+    "subtitle": "Certified FVE/RFEV instructors with state-of-the-art equipment at Long Beach, Tarragona",
+    "levelBadge": "All levels",
+    "ctaCourse": "View course"
+  },
+  "activities": {
+    "badge": "ACTIVITIES",
+    "title": "Discover the coast from the sea",
+    "subtitle": "Fun guaranteed for all ages at Long Beach, Tarragona",
+    "ctaMore": "More info",
+    "kayak": {
+      "title": "Kayaking",
+      "desc": "Explore the coves of Costa Dorada at your own pace. Single or double, for all levels."
+    },
+    "banana": {
+      "title": "Banana Boat",
+      "desc": "The classic fun ride. Suitable for the whole family. Minimum age: 5 years."
+    },
+    "donut": {
+      "title": "Donut Ride",
+      "desc": "Excitement and speed towed by boat. Unlimited adrenaline."
+    },
+    "boat": {
+      "title": "Boat Trips",
+      "desc": "Discover Tarragona and its coastline from the sea. Sunsets included."
+    },
+    "ski": {
+      "title": "Ski-bus",
+      "desc": "Water skiing for beginners and advanced with onboard instructor."
+    }
+  },
+  "groups": {
+    "badge": "COMING AS A GROUP?",
+    "title": "Activities for groups and companies",
+    "cta": "Request a custom quote",
+    "schools": {
+      "title": "Schools",
+      "desc": "Educational water activities adapted to each age. Special rates for school groups."
+    },
+    "companies": {
+      "title": "Companies - Team Building",
+      "desc": "Strengthen your team with the challenge of the sea. Customized activities for businesses."
+    },
+    "friends": {
+      "title": "Friend groups",
+      "desc": "The perfect water adventure. We combine custom activities for an unforgettable day."
+    },
+    "bachelorette": {
+      "title": "Bachelor/ette parties",
+      "desc": "A different, healthy and exciting celebration. Complete organization included."
+    }
+  },
+  "whyUs": {
+    "title": "Why choose Windsurf Tarragona?",
+    "certified": {
+      "title": "Certified FVE/RFEV instructors",
+      "desc": "Official training and proven experience"
+    },
+    "equipment": {
+      "title": "State-of-the-art equipment",
+      "desc": "Modern gear for the best learning experience"
+    },
+    "location": {
+      "title": "Prime location",
+      "desc": "Camping Las Palmeras, Long Beach, Tarragona"
+    },
+    "openYear": {
+      "title": "Open all year round",
+      "desc": "12 months, regardless of the season"
+    },
+    "allAges": {
+      "title": "For all ages",
+      "desc": "From children to adults, everyone is welcome"
+    },
+    "experience": {
+      "title": "+20 years of experience",
+      "desc": "Leading water sports in Tarragona"
+    }
+  },
+  "gallery": {
+    "title": "Experience it firsthand",
+    "subtitle": "Real moments at Long Beach",
+    "instagram": "See more on Instagram @windsurftarragona"
+  },
+  "testimonials": {
+    "badge": "WHAT OUR STUDENTS SAY",
+    "title": "Over 10,000 satisfied students",
+    "rating": "4.8/5 on Google - +150 verified reviews",
+    "verified": "Google"
+  },
+  "location": {
+    "title": "We are at Long Beach, Tarragona",
+    "address": "Carretera N-340, Km 1168, Camping Las Palmeras, 43007 Tarragona",
+    "phone": "+34 977 23 27 15",
+    "instagram": "@windsurftarragona",
+    "ctaCall": "Call now",
+    "ctaMap": "Get directions"
+  },
+  "contact": {
+    "title": "Questions? Write to us",
+    "subtitle": "We respond within 24 hours. You can also call us at 977 23 27 15",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "interest": "Activity of interest",
+    "message": "Message",
+    "privacy": "I accept the Privacy Policy",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent! We will respond within 24h",
+    "error": "Error sending. Call us: +34 977 23 27 15",
+    "validation": {
+      "nameMin": "Minimum 2 characters",
+      "emailInvalid": "Invalid email",
+      "messageMin": "Minimum 10 characters",
+      "privacyRequired": "You must accept the privacy policy"
+    }
+  },
+  "footer": {
+    "desc": "Water sports school at Long Beach, Tarragona. Windsurfing, Kitesurfing, Catamaran and water activities all year round.",
+    "badge": "Open all year - Long Beach, Tarragona",
+    "copyright": "2025 Windsurf Tarragona. All rights reserved",
+    "privacy": "Privacy Policy",
+    "legal": "Legal Notice",
+    "cookies": "Cookies"
+  },
+  "cookie": {
+    "text": "We use our own and third-party cookies to analyze traffic and improve your experience.",
+    "link": "Cookie Policy",
+    "acceptAll": "Accept all",
+    "essential": "Essential only",
+    "manage": "Manage preferences",
+    "save": "Save preferences",
+    "technical": {
+      "title": "Technical",
+      "desc": "Necessary for basic functionality"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "desc": "Google Analytics, anonymous traffic"
+    },
+    "marketing": {
+      "title": "Marketing",
+      "desc": "Personalized content"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Windsurf Tarragona - Water Sports School in Costa Dorada, Spain",
+      "desc": "Windsurfing school, kitesurfing lessons, catamaran and water sports in Tarragona, Costa Dorada. Long Beach (Platja Llarga). Certified instructors. Open all year. Tel +34 977 23 27 15"
+    },
+    "school": {
+      "title": "Water Sports School Tarragona | Windsurfing, Kitesurfing, Catamaran",
+      "desc": "Windsurfing, kitesurfing, catamaran courses and more at Long Beach, Tarragona."
+    },
+    "activities": {
+      "title": "Water Activities Tarragona | Kayaking, Banana Boat",
+      "desc": "Kayaking, banana boat, donut rides and boat trips at Long Beach, Tarragona."
+    },
+    "contact": {
+      "title": "Contact | Windsurf Tarragona",
+      "desc": "Contact Windsurf Tarragona water sports school. Long Beach, Tarragona. Tel +34 977 23 27 15"
+    }
+  }
+}

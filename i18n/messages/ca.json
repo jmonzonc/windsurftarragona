@@ -1,0 +1,207 @@
+{
+  "nav": {
+    "school": "Escola",
+    "activities": "Activitats",
+    "groups": "Grups",
+    "contact": "Contacte",
+    "book": "Reservar",
+    "lang": "CA",
+    "courses": {
+      "windsurf": "Windsurf",
+      "kitesurf": "Kitesurf",
+      "catamaran": "Catamarà",
+      "patinCatalan": "Patí Català",
+      "paddleSurf": "Pàdel Surf",
+      "esquiNautico": "Esquí Nàutic",
+      "wakeBoard": "Wake-board",
+      "surf": "Surf",
+      "wingFoil": "Wing Foil"
+    },
+    "activitiesList": {
+      "kayak": "Caiac",
+      "bananaBoot": "Banana Boat",
+      "donut": "Donut",
+      "boatTrips": "Passejos en Llanxa"
+    }
+  },
+  "hero": {
+    "badge": "Platja Llarga, Tarragona - Costa Daurada",
+    "headline": "Aprèn a navegar.\nViu el Mediterrani.",
+    "subheadline": "Escola nàutica a Tarragona. Windsurf, Kitesurf, Catamarà i activitats aquàtiques per a tots els nivells. Monitors titulats FVE/RFEV.",
+    "ctaPrimary": "Veure cursos",
+    "ctaSecondary": "Veure activitats",
+    "badge2": "+20 anys d'experiència"
+  },
+  "stats": {
+    "years": "Anys d'experiència",
+    "students": "Alumnes formats",
+    "disciplines": "Disciplines nàutiques",
+    "months": "Mesos oberts a l'any"
+  },
+  "school": {
+    "badge": "LA NOSTRA ESCOLA",
+    "title": "Aprèn amb els millors",
+    "subtitle": "Monitors titulats FVE/RFEV amb material d'última generació a Platja Llarga, Tarragona",
+    "levelBadge": "Tots els nivells",
+    "ctaCourse": "Veure curs"
+  },
+  "activities": {
+    "badge": "ACTIVITATS",
+    "title": "Descobreix la costa des del mar",
+    "subtitle": "Diversió garantida per a totes les edats a Platja Llarga, Tarragona",
+    "ctaMore": "Més info",
+    "kayak": {
+      "title": "Caiac",
+      "desc": "Explora les cales de la Costa Daurada al teu ritme. Individual o doble, per a tots els nivells."
+    },
+    "banana": {
+      "title": "Banana Boat",
+      "desc": "El clàssic de les rialles. Apte per a tota la família. Edat mínima: 5 anys."
+    },
+    "donut": {
+      "title": "Donut Ride",
+      "desc": "Emoció i velocitat arrossegat per llanxa. Sense límit d'adrenalina."
+    },
+    "boat": {
+      "title": "Passejos en Llanxa",
+      "desc": "Descobreix Tarragona i la seva costa des del mar. Postes de sol incloses."
+    },
+    "ski": {
+      "title": "Esquí-bus",
+      "desc": "Esquí aquàtic per a principiants i avançats amb instructor a bord."
+    }
+  },
+  "groups": {
+    "badge": "VENIU EN GRUP?",
+    "title": "Activitats per a grups i empreses",
+    "cta": "Demana pressupost personalitzat",
+    "schools": {
+      "title": "Escoles",
+      "desc": "Activitats nàutiques pedagògiques adaptades a cada edat. Pressupost especial per a grups escolars."
+    },
+    "companies": {
+      "title": "Empreses - Team Building",
+      "desc": "Enforteix el teu equip amb el repte del mar. Activitats personalitzades per a empreses."
+    },
+    "friends": {
+      "title": "Grups d'amics",
+      "desc": "L'aventura nàutica perfecta. Combinem activitats a mida per a una jornada inoblidable."
+    },
+    "bachelorette": {
+      "title": "Comiat de solter/a",
+      "desc": "Un comiat diferent, saludable i emocionant. Organització completa inclosa."
+    }
+  },
+  "whyUs": {
+    "title": "Per què triar Windsurf Tarragona?",
+    "certified": {
+      "title": "Monitors titulats FVE/RFEV",
+      "desc": "Formació oficial i experiència provada"
+    },
+    "equipment": {
+      "title": "Material d'última generació",
+      "desc": "Equips moderns per al millor aprenentatge"
+    },
+    "location": {
+      "title": "Ubicació privilegiada",
+      "desc": "Càmping Las Palmeras, Platja Llarga, Tarragona"
+    },
+    "openYear": {
+      "title": "Oberts tot l'any",
+      "desc": "12 mesos, sense importar la temporada"
+    },
+    "allAges": {
+      "title": "Per a totes les edats",
+      "desc": "Des de nens fins a adults, tots benvinguts"
+    },
+    "experience": {
+      "title": "+20 anys d'experiència",
+      "desc": "Referents en nàutica a Tarragona"
+    }
+  },
+  "gallery": {
+    "title": "Viu-ho en primera persona",
+    "subtitle": "Moments reals a Platja Llarga",
+    "instagram": "Veure més a Instagram @windsurftarragona"
+  },
+  "testimonials": {
+    "badge": "EL QUE DIUEN ELS NOSTRES ALUMNES",
+    "title": "Més de 10.000 alumnes satisfets",
+    "rating": "4.8/5 a Google - +150 ressenyes verificades",
+    "verified": "Google"
+  },
+  "location": {
+    "title": "Som a Platja Llarga, Tarragona",
+    "address": "Carretera N-340, Km 1168, Càmping Las Palmeras, 43007 Tarragona",
+    "phone": "+34 977 23 27 15",
+    "instagram": "@windsurftarragona",
+    "ctaCall": "Trucar ara",
+    "ctaMap": "Com arribar"
+  },
+  "contact": {
+    "title": "Tens dubtes? Escriu-nos",
+    "subtitle": "Et responem en menys de 24 hores. També pots trucar-nos al 977 23 27 15",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Telèfon (opcional)",
+    "interest": "Activitat d'interès",
+    "message": "Missatge",
+    "privacy": "Accepto la Política de Privacitat",
+    "send": "Enviar missatge",
+    "sending": "Enviant...",
+    "success": "Missatge enviat! Et respondrem en menys de 24h",
+    "error": "Error en enviar. Truca'ns: +34 977 23 27 15",
+    "validation": {
+      "nameMin": "Mínim 2 caràcters",
+      "emailInvalid": "Email no vàlid",
+      "messageMin": "Mínim 10 caràcters",
+      "privacyRequired": "Has d'acceptar la política de privacitat"
+    }
+  },
+  "footer": {
+    "desc": "Escola nàutica a Platja Llarga, Tarragona. Windsurf, Kitesurf, Catamarà i activitats nàutiques tot l'any.",
+    "badge": "Obert tot l'any - Platja Llarga, Tarragona",
+    "copyright": "2025 Windsurf Tarragona. Tots els drets reservats",
+    "privacy": "Política de Privacitat",
+    "legal": "Avís Legal",
+    "cookies": "Cookies"
+  },
+  "cookie": {
+    "text": "Fem servir cookies pròpies i de tercers per analitzar el trànsit i millorar la teva experiència.",
+    "link": "Política de Cookies",
+    "acceptAll": "Acceptar totes",
+    "essential": "Només necessàries",
+    "manage": "Gestionar preferències",
+    "save": "Desar preferències",
+    "technical": {
+      "title": "Tècniques",
+      "desc": "Necessàries per al funcionament bàsic"
+    },
+    "analytics": {
+      "title": "Analítiques",
+      "desc": "Google Analytics, trànsit anònim"
+    },
+    "marketing": {
+      "title": "Màrqueting",
+      "desc": "Contingut personalitzat"
+    }
+  },
+  "meta": {
+    "home": {
+      "title": "Windsurf Tarragona - Escola Nàutica i Activitats a la Costa Daurada",
+      "desc": "Escola de windsurf, kitesurf, catamarà i activitats nàutiques a Tarragona. Platja Llarga, monitors titulats FVE/RFEV. Obert tot l'any. Tel 977 23 27 15"
+    },
+    "school": {
+      "title": "Escola Nàutica Tarragona | Windsurf, Kitesurf, Catamarà",
+      "desc": "Cursos de windsurf, kitesurf, catamarà i més a Platja Llarga, Tarragona."
+    },
+    "activities": {
+      "title": "Activitats Nàutiques Tarragona | Caiac, Banana Boat",
+      "desc": "Caiac, banana boat, donut i passejos en llanxa a Platja Llarga, Tarragona."
+    },
+    "contact": {
+      "title": "Contacte | Windsurf Tarragona",
+      "desc": "Contacta amb l'escola nàutica Windsurf Tarragona. Platja Llarga, Tarragona. Tel 977 23 27 15"
+    }
+  }
+}
