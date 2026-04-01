@@ -1,204 +1,76 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ChevronRight, Anchor, Award, Users } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { services } from '@/data/services'
-import { AnimatedSection } from '@/components/AnimatedSection'
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Escuela Nautica Tarragona | Windsurf, Kitesurf, Catamaran y mas',
-  description:
-    'Aprende windsurf, kitesurf, catamaran, paddle surf y mas en nuestra escuela nautica en Playa Larga, Tarragona. Monitores titulados FVE/RFEV.',
-  alternates: {
-    canonical: 'https://windsurftarragona.com/es/escuela',
-    languages: {
-      es: 'https://windsurftarragona.com/es/escuela',
-      ca: 'https://windsurftarragona.com/ca/escuela',
-      en: 'https://windsurftarragona.com/en/escuela',
-      'x-default': 'https://windsurftarragona.com/es/escuela',
-    },
-  },
-  openGraph: {
-    title: 'Escuela Nautica Tarragona | Windsurf Tarragona',
-    description:
-      'Aprende windsurf, kitesurf, catamaran, paddle surf y mas en Playa Larga, Tarragona.',
-    url: 'https://windsurftarragona.com/es/escuela',
-    type: 'website',
-  },
-}
+import { useState } from "react";
+import Link from "next/link";
+import { useReveal } from "@/lib/hooks";
+import { COURSE_IMAGES } from "@/lib/constants";
+import type { Locale } from "@/lib/i18n";
 
-export default function EscuelaPage() {
-  const itemListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Cursos de la Escuela Nautica Windsurf Tarragona',
-    numberOfItems: services.length,
-    itemListElement: services.map((service, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: `Curso de ${service.name}`,
-      url: `https://windsurftarragona.com/es/escuela/${service.slug}`,
-    })),
-  }
+type CourseData = { name: string; desc: string };
+type EscuelaDict = {
+  pill: string; title1: string; title2: string; allLevels: string;
+  book: string; moreInfo: string;
+  courses: Record<string, CourseData>;
+};
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: 'https://windsurftarragona.com/es',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Escuela',
-        item: 'https://windsurftarragona.com/es/escuela',
-      },
-    ],
-  }
+const KEYS = ["windsurf", "vela", "surf", "wakesurf", "catamaran", "patin-catalan"] as const;
+const EMOJIS: Record<string, string> = { windsurf: "🏄", vela: "⛵", surf: "🌊", wakesurf: "🏂", catamaran: "🛥️", "patin-catalan": "🚩" };
+const ACCENT: Record<string, string> = { windsurf: "from-turq to-ocean", vela: "from-ocean to-deep", surf: "from-blue-500 to-ocean", wakesurf: "from-coral to-sun", catamaran: "from-gold to-sun", "patin-catalan": "from-sun to-coral" };
+
+export default function Escuela({ dict, locale }: { dict: EscuelaDict; locale: Locale }) {
+  const [ref, vis] = useReveal();
+  const [active, setActive] = useState(0);
+  const key = KEYS[active];
+  const course = dict.courses[key];
+  const accent = ACCENT[key];
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
-      {/* Hero */}
-      <section className="relative flex h-[50vh] min-h-[400px] items-center justify-center">
-        <Image
-          src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80"
-          alt="Escuela Nautica en Tarragona - Playa Larga"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[#0C4A6E]/70" />
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-          {/* Breadcrumb Visual */}
-          <nav
-            aria-label="Breadcrumb"
-            className="mb-6 flex items-center justify-center gap-2 text-sm text-white/80"
-          >
-            <Link href="/es" className="hover:text-white">
-              Inicio
-            </Link>
-            <ChevronRight className="h-4 w-4 text-white/40" />
-            <span className="text-white">Escuela</span>
-          </nav>
-
-          <h1 className="font-heading text-4xl font-black text-white md:text-5xl lg:text-6xl">
-            Escuela Nautica en Tarragona
-          </h1>
-          <p className="mt-4 text-lg text-white/90 md:text-xl">
-            Aprende deportes nauticos con los mejores profesionales de la Costa Dorada
-          </p>
+    <section id="escuela" ref={ref as React.RefObject<HTMLElement>} className="bg-ice py-14 sm:py-20 md:py-28 px-4 sm:px-5 relative overflow-hidden">
+      <div className="absolute -top-[200px] -right-[200px] w-[700px] h-[700px] rounded-full bg-turq/[0.024] blur-[100px] pointer-events-none" />
+      <div className="max-w-[1140px] mx-auto relative z-[1]">
+        <div className="mb-8 md:mb-14" style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(40px)", transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
+          <div className="section-pill bg-ocean/[0.04] border border-ocean/[0.08] text-ocean text-[10px] sm:text-xs">{dict.pill}</div>
+          <h2 className="font-display text-midnight leading-[0.95] m-0" style={{ fontSize: "clamp(30px, 6vw, 64px)" }}>{dict.title1} <br /><span className="gradient-text-ocean">{dict.title2}</span></h2>
         </div>
-      </section>
-
-      {/* Intro Section */}
-      <section className="bg-[var(--wt-bg)] py-16 md:py-24">
-        <div className="mx-auto max-w-4xl px-4 text-center">
-          <AnimatedSection>
-            <div className="mb-8 flex items-center justify-center gap-8">
-              <div className="flex flex-col items-center">
-                <Anchor className="h-8 w-8 text-[#0EA5E9]" />
-                <span className="mt-2 text-sm text-gray-600">Playa Larga</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Award className="h-8 w-8 text-[#F59E0B]" />
-                <span className="mt-2 text-sm text-gray-600">FVE/RFEV</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Users className="h-8 w-8 text-[#0EA5E9]" />
-                <span className="mt-2 text-sm text-gray-600">Todos los niveles</span>
+        <div className="flex flex-col md:flex-row gap-4 md:gap-7">
+          {/* Tabs - horizontal scroll on mobile with fade hint */}
+          <div className="relative md:min-w-[240px] flex-[0_0_auto]"
+            style={{ opacity: vis ? 1 : 0, transform: vis ? "translateX(0)" : "translateX(-40px)", transition: "all 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s" }}>
+            <div className="flex md:flex-col gap-1.5 overflow-x-auto md:overflow-x-visible pb-1 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+              {KEYS.map((k, i) => {
+                const c = dict.courses[k];
+                const isActive = i === active;
+                return (
+                  <button key={k} onClick={() => setActive(i)}
+                    className={`font-body flex items-center gap-2.5 sm:gap-3.5 py-2.5 sm:py-[15px] px-4 sm:px-[22px] rounded-[14px] sm:rounded-[18px] border-2 cursor-pointer text-left whitespace-nowrap md:whitespace-normal transition-all duration-[350ms] ease-out bg-transparent shrink-0 ${isActive ? "border-ocean/20 !bg-white shadow-[0_6px_24px_rgba(0,104,214,0.05)]" : "border-transparent hover:bg-white/50"}`}>
+                    <span className="text-xl sm:text-2xl" style={{ filter: isActive ? "none" : "grayscale(0.5)" }}>{EMOJIS[k]}</span>
+                    <span className={`text-[13px] sm:text-[15px] ${isActive ? "font-bold text-midnight" : "font-medium text-gray-400"}`}>{c.name}</span>
+                    {isActive && <div className={`ml-auto w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-gradient-to-br ${accent} shadow-[0_0_8px_rgba(0,212,170,0.27)] hidden sm:block`} />}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Fade hint for mobile scroll */}
+            <div className="absolute right-0 top-0 bottom-1 w-8 bg-gradient-to-l from-ice to-transparent pointer-events-none md:hidden" />
+          </div>
+          {/* Card */}
+          <div key={active} className="flex-1 min-w-0 rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white shadow-[0_12px_48px_rgba(0,104,214,0.05)] animate-card-reveal">
+            <div className="relative overflow-hidden h-[200px] sm:h-[260px] md:h-[320px] lg:h-[380px]">
+              <img src={COURSE_IMAGES[key]} alt={course.name} width={900} height={600} className="w-full h-full object-cover animate-img-zoom" />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight/40 to-transparent" />
+              <div className={`absolute top-4 left-4 sm:top-5 sm:left-5 bg-gradient-to-br ${accent} text-white py-1.5 sm:py-2 px-4 sm:px-5 rounded-full font-body font-extrabold text-[10px] sm:text-[11px] tracking-[1.5px] sm:tracking-[2px] uppercase shadow-lg`}>{dict.allLevels}</div>
+            </div>
+            <div className="p-5 sm:p-7 md:p-9">
+              <h3 className="font-display text-[24px] sm:text-[30px] text-midnight mb-2">{EMOJIS[key]} {course.name}</h3>
+              <p className="font-body text-sm sm:text-base text-gray-500 leading-[1.55] sm:leading-[1.65] mb-5 sm:mb-7">{course.desc}</p>
+              <div className="flex gap-2.5 sm:gap-3 flex-wrap">
+                <Link href={`/${locale}/escuela/${key}`} className={`btn-primary py-2.5 sm:py-[13px] px-5 sm:px-[30px] text-[13px] sm:text-[15px] no-underline bg-gradient-to-br ${accent}`}>{dict.book}</Link>
+                <Link href={`/${locale}/escuela/${key}`} className="font-body py-2.5 sm:py-[13px] px-4 sm:px-6 rounded-full border-2 border-ocean/[0.1] bg-transparent text-ocean font-semibold text-[12px] sm:text-sm no-underline transition-all duration-300 hover:bg-ocean/[0.04]">{dict.moreInfo}</Link>
               </div>
             </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <p className="mb-6 text-lg leading-relaxed text-gray-700">
-              Nuestra escuela nautica en Tarragona lleva mas de 20 anos formando a navegantes de
-              todas las edades y niveles. Ubicados en Playa Larga, junto al Camping Las Palmeras,
-              disfrutamos de unas condiciones privilegiadas en la Costa Dorada: aguas tranquilas,
-              viento termico constante y mas de 300 dias de sol al ano.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2}>
-            <p className="text-lg leading-relaxed text-gray-700">
-              Todos nuestros monitores estan titulados por la Federacion de Vela de Espana (FVE) y
-              la Real Federacion Espanola de Vela (RFEV). Ofrecemos cursos de windsurf, kitesurf,
-              catamaran, patin catalan, paddle surf, esqui nautico, wakeboard, surf y wing foil.
-              Desde iniciacion hasta perfeccionamiento, encontraras el curso perfecto para ti.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Courses Grid */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4">
-          <AnimatedSection>
-            <h2 className="mb-12 text-center font-heading text-3xl font-bold text-[var(--wt-deep)] md:text-4xl">
-              Nuestros Cursos
-            </h2>
-          </AnimatedSection>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <AnimatedSection key={service.slug} delay={index * 0.05}>
-                <Link href={`/es/escuela/${service.slug}`}>
-                  <Card className="group h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={`https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80`}
-                        alt={`Curso de ${service.name} en Tarragona - Playa Larga`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      {service.minAge && (
-                        <Badge className="absolute right-3 top-3 bg-white/90 text-[#0C4A6E]">
-                          +{service.minAge} anos
-                        </Badge>
-                      )}
-                      <div className="absolute bottom-3 left-3 right-3">
-                        <h3 className="font-heading text-xl font-bold text-white">
-                          {service.name}
-                        </h3>
-                      </div>
-                    </div>
-                    <CardContent className="p-4">
-                      <p className="line-clamp-2 text-sm text-gray-600">{service.description}</p>
-                      <div className="mt-4 flex items-center justify-between">
-                        <span className="text-xs text-gray-400">
-                          {service.levels.length} niveles
-                        </span>
-                        <span className="flex items-center text-sm font-medium text-[#0EA5E9]">
-                          Ver curso
-                          <ChevronRight className="ml-1 h-4 w-4" />
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </AnimatedSection>
-            ))}
           </div>
         </div>
-      </section>
-    </>
-  )
+      </div>
+    </section>
+  );
 }
