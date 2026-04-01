@@ -1,248 +1,50 @@
-import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import { AnimatedSection } from '@/components/AnimatedSection'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { GroupContactForm } from '@/components/sections/GroupContactForm'
+"use client";
 
-interface GruposPageProps {
-  params: Promise<{ locale: string }>
-}
+import { useState } from "react";
+import Link from "next/link";
+import { useReveal } from "@/lib/hooks";
+import type { Locale } from "@/lib/i18n";
 
-export async function generateMetadata({ params }: GruposPageProps): Promise<Metadata> {
-  const { locale } = await params
+type GroupItem = { title: string; desc: string };
+type GruposDict = { title1: string; title2: string; title3: string; cta: string; items: Record<string, GroupItem> };
 
-  return {
-    title: 'Actividades en Grupo Tarragona | Empresas, Colegios, Despedidas',
-    description:
-      'Team building nautico, salidas de colegio, grupos de amigos y despedidas en Playa Larga, Tarragona. Presupuesto personalizado. ☎ 977 23 27 15',
-    alternates: {
-      canonical: `https://windsurftarragona.com/${locale}/grupos`,
-      languages: {
-        es: '/es/grupos',
-        ca: '/ca/grupos',
-        en: '/en/grupos',
-        'x-default': '/es/grupos',
-      },
-    },
-    openGraph: {
-      type: 'website',
-      locale: locale === 'es' ? 'es_ES' : locale === 'ca' ? 'ca_ES' : 'en_US',
-      siteName: 'Windsurf Tarragona',
-      title: 'Actividades en Grupo Tarragona | Empresas, Colegios, Despedidas',
-      description:
-        'Team building nautico, salidas de colegio, grupos de amigos y despedidas en Playa Larga, Tarragona.',
-    },
-  }
-}
+const KEYS = ["colegios", "team-building", "amigos", "despedidas"] as const;
+const EMOJIS: Record<string, string> = { colegios: "🏫", "team-building": "🏢", amigos: "👯", despedidas: "💍" };
 
-const groupTypes = [
-  {
-    id: 'colegios',
-    title: 'Colegios y Escuelas',
-    description:
-      'Organizamos salidas escolares y actividades de fin de curso en Playa Larga. Programas adaptados por edades, desde primaria hasta bachillerato. Incluimos transporte, monitores titulados y seguro de responsabilidad civil. Actividades pedagogicas que combinan deporte, naturaleza y trabajo en equipo.',
-    image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',
-  },
-  {
-    id: 'empresas',
-    title: 'Empresas - Team Building',
-    description:
-      'Fortalece los lazos de tu equipo con actividades nauticas en la Costa Dorada. Retos de equipo, regatas de catamaran, competiciones de kayak y jornadas completas de multiaventura. Catering disponible. Ideal para eventos corporativos, convenciones y premios de empresa.',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
-  },
-  {
-    id: 'amigos',
-    title: 'Grupos de Amigos',
-    description:
-      'La excursion perfecta para celebrar con amigos. Combina varias actividades en una jornada inolvidable: kayak, banana boat, esqui bus y mas. Descuentos especiales para grupos de 10 o mas personas. Reserva tu dia de aventura en Tarragona.',
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
-  },
-  {
-    id: 'despedidas',
-    title: 'Despedidas de Soltero/a',
-    description:
-      'Una despedida diferente, sana y llena de adrenalina. Packs especiales con esqui bus, banana boat, donut y paseo en lancha. Fotos y video incluidos en algunos packs. Organizacion completa para que solo te preocupes de pasarlo bien.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
-  },
-]
-
-const faqs = [
-  {
-    question: 'Cual es el precio para grupos?',
-    answer:
-      'El precio varia segun el numero de personas, las actividades elegidas y la duracion. Contactanos con los detalles de tu grupo y te enviaremos un presupuesto personalizado sin compromiso en menos de 24 horas.',
-  },
-  {
-    question: 'Cual es el tamano minimo del grupo?',
-    answer:
-      'Para beneficiarte de tarifas de grupo, necesitas un minimo de 10 personas. Para grupos mas pequenos, ofrecemos tarifas individuales con posibilidad de unirse a otros grupos.',
-  },
-  {
-    question: 'Se puede personalizar el programa de actividades?',
-    answer:
-      'Si, dissenamos programas a medida segun vuestros objetivos, tiempo disponible y presupuesto. Podemos combinar diferentes actividades, anadir catering o adaptar la jornada a vuestras necesidades.',
-  },
-  {
-    question: 'Cuanto tardais en enviar el presupuesto?',
-    answer:
-      'Respondemos a todas las solicitudes en menos de 24 horas laborables. Para urgencias, puedes llamarnos directamente al 977 23 27 15 o escribirnos por WhatsApp.',
-  },
-]
-
-export default async function GruposPage({ params }: GruposPageProps) {
-  const { locale } = await params
-  setRequestLocale(locale)
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: `https://windsurftarragona.com/${locale}`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Grupos',
-        item: `https://windsurftarragona.com/${locale}/grupos`,
-      },
-    ],
-  }
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
+export default function Grupos({ dict, locale }: { dict: GruposDict; locale: Locale }) {
+  const [ref, vis] = useReveal();
 
   return (
-    <main>
-      <JsonLd schema={breadcrumbSchema} />
-      <JsonLd schema={faqSchema} />
-
-      {/* HERO */}
-      <section className="relative flex h-[60vh] min-h-[400px] items-center overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80"
-          alt="Actividades en grupo en Tarragona"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C4A6E]/80 to-transparent" />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-16">
-          <nav className="mb-6 flex items-center gap-2 text-sm text-white/80">
-            <Link href={`/${locale}`} className="hover:text-white">
-              Inicio
-            </Link>
-            <ChevronRight className="h-4 w-4" />
-            <span className="text-white">Grupos</span>
-          </nav>
-
-          <h1 className="max-w-3xl font-heading text-4xl font-black text-white md:text-6xl">
-            Actividades en Grupo en Tarragona
-          </h1>
-          <p className="mt-4 max-w-xl text-lg text-white/90">
-            Colegios, empresas, amigos y despedidas
-          </p>
+    <section id="grupos" ref={ref as React.RefObject<HTMLElement>} className="bg-gradient-to-b from-sand via-white to-ice py-14 sm:py-20 md:py-28 px-4 sm:px-5 relative overflow-hidden">
+      <div className="max-w-[960px] mx-auto text-center relative z-[1]">
+        <div style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(40px)", transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
+          <h2 className="font-display text-midnight leading-none mb-8 md:mb-14" style={{ fontSize: "clamp(28px, 5.5vw, 56px)" }}>
+            {dict.title1} <span className="gradient-text-ocean">{dict.title2}</span>{dict.title3}
+          </h2>
         </div>
-      </section>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-[18px]">
+          {KEYS.map((key, i) => {
+            const g = dict.items[key];
+            return <GroupCard key={key} emoji={EMOJIS[key]} title={g.title} desc={g.desc} vis={vis} delay={0.15 + i * 0.1} />;
+          })}
+        </div>
+        <div className="mt-8 md:mt-14" style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s" }}>
+          <Link href={`/${locale}/grupos`} className="btn-primary py-3.5 sm:py-[17px] px-8 sm:px-12 text-[15px] sm:text-[17px] font-extrabold no-underline inline-block shadow-[0_10px_36px_rgba(0,104,214,0.16)] hover:-translate-y-1 hover:scale-[1.04]">{dict.cta}</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-      {/* GROUP TYPES - ALTERNATING */}
-      {groupTypes.map((group, index) => {
-        const isEven = index % 2 === 0
-        return (
-          <AnimatedSection key={group.id}>
-            <section className={`px-6 py-20 md:px-16 ${isEven ? 'bg-white' : 'bg-[#F0F9FF]'}`}>
-              <div className="mx-auto max-w-7xl">
-                <div
-                  className={`flex flex-col gap-12 md:grid md:grid-cols-2 md:items-center ${isEven ? '' : 'md:[&>*:first-child]:order-2'}`}
-                >
-                  <div className="relative aspect-video overflow-hidden rounded-2xl shadow-xl">
-                    <Image
-                      src={group.image}
-                      alt={`${group.title} - Windsurf Tarragona`}
-                      fill
-                      sizes="50vw"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-4">
-                    <h2 className="font-heading text-3xl font-black text-[#0F172A] md:text-4xl">
-                      {group.title}
-                    </h2>
-                    <p className="text-lg leading-relaxed text-gray-600">{group.description}</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </AnimatedSection>
-        )
-      })}
-
-      {/* CONTACT FORM */}
-      <AnimatedSection>
-        <section id="formulario" className="bg-white px-6 py-20 md:px-16">
-          <div className="mx-auto max-w-3xl">
-            <div className="text-center">
-              <h2 className="font-heading text-3xl font-black text-[#0F172A] md:text-4xl">
-                Solicita tu presupuesto
-              </h2>
-              <p className="mt-4 text-gray-500">
-                Cuentanos sobre tu grupo y te enviaremos una propuesta personalizada en menos de 24h
-              </p>
-            </div>
-
-            <div className="mt-10 rounded-2xl border border-gray-100 bg-[#F0F9FF] p-6 shadow-sm md:p-10">
-              <GroupContactForm />
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* FAQ */}
-      <AnimatedSection>
-        <section className="bg-[#F0F9FF] px-6 py-20 md:px-16">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-center font-heading text-3xl font-black text-[#0F172A] md:text-4xl">
-              Preguntas frecuentes sobre grupos
-            </h2>
-
-            <Accordion type="single" collapsible className="mt-10">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left font-heading text-lg font-semibold text-[#0F172A]">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-      </AnimatedSection>
-    </main>
-  )
+function GroupCard({ emoji, title, desc, vis, delay }: { emoji: string; title: string; desc: string; vis: boolean; delay: number }) {
+  const [h, setH] = useState(false);
+  return (
+    <div onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      className="bg-white rounded-[20px] sm:rounded-[28px] px-4 sm:px-6 pt-7 sm:pt-10 pb-6 sm:pb-9 cursor-pointer transition-all duration-500 ease-expo"
+      style={{ boxShadow: h ? "0 12px 36px rgba(0,104,214,0.07)" : "0 2px 16px rgba(0,104,214,0.024)", border: h ? "1px solid rgba(0,212,170,0.2)" : "1px solid rgba(0,104,214,0.03)", opacity: vis ? 1 : 0, transform: vis ? (h ? "translateY(-6px)" : "translateY(0)") : "translateY(30px)", transitionDelay: vis ? "0ms" : `${delay * 1000}ms` }}>
+      <div className="text-[32px] sm:text-[44px] mb-2 sm:mb-4 transition-transform duration-400 ease-expo" style={{ transform: h ? "scale(1.15) rotate(-5deg)" : "scale(1)" }}>{emoji}</div>
+      <h3 className="font-display text-base sm:text-xl text-midnight mb-1 sm:mb-2">{title}</h3>
+      <p className="font-body text-xs sm:text-sm text-gray-400 leading-[1.4] sm:leading-[1.5]">{desc}</p>
+    </div>
+  );
 }
